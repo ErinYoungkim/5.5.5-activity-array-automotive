@@ -1,16 +1,5 @@
-//this includes the vehicle class as a module
-// const VehicleModule = require("./vehicleBaseClass").Vehicle
 
-//this shows how to call from this module...
-// let v = new VehicleModule.Vehicle("Mercury", "Sedan", "1965", "color", "mileage");
-// console.log(v.make)
-
-//After you write the derived Car class, you should test it out.
-
-//Note: You can code your derived Car class here or make a file named index.js and do it there.
-
-//TO DO: Code the Car subclass here or in index.js file, i.e. class Car extends Vehicle ...
-import Vehicle from './vehicleBaseClass.js'
+import Vehicle from "./vehicleBaseClass.js";
 
 class Car extends Vehicle {
   constructor(make, model, year, color, mileage) {
@@ -22,14 +11,25 @@ class Car extends Vehicle {
     this.fuel = 10;
     this.serivce = false;
   }
+  // I HAD A PROBLEM with my method bc of scheduleService.
+  // With the code above, it was written as 'this.scheduleService' before and trying to invoke it w/o ternary will call onto two things that have the same name.
+  // which led me to change it to this.service in the constructor. BUT if i uncomment out my ternary it should work regardless of if i had them both named as scheduleService.
+  
+  // loadPassenger(num) {
+  //   this.passenger = num;
+  //   return this.passenger < this.maxPassenger ? true : false;
+  // }
+  
+  // in the code above i tested it with ternary again and was able to figure it out and i got it working by taking the properties of my constructor and setting the parameter to num
+  // which then i understand that im trying to tell my code if this.passenger is less than this.maxPassenger its true "?" else ":" false.
 
-      loadPassenger(num) {
-          this.num = num
-          if (num > this.maxPassenger) {
-          console.log('NO ROOM GET OUT');
-        } else {
-            console.log(`it's roomy in here`);
-        }
+  loadPassenger(num){
+    this.num = num;
+    if (num > this.maxPassenger) {
+      console.log("NO ROOM GET OUT");
+    } else {
+      console.log(`it's roomy in here`);
+    }
   }
 
   start() {
@@ -58,10 +58,11 @@ myCar.loadPassenger(3);
 myCar.start();
 myCar.scheduleService(40000);
 
+// const result = myCar.loadPassenger(3);
+// console.log(result);
 
+// i wanted to know how id get the result for my ternary for loadPassenger and figured that i can make a const for results which will = Mycar.load()
+// which i then can console.log(results)
+// and in this case since 3 is less than 5 the results should come out as true. and it did and double checking it when i put (7) the result came out as false. 7 is not less than 5.
+// :) happy coding LOL ps this made me want to rip my hair out before i actually started to grasp the concept.
 
-//TO DO: Creating Instances and Testing Them
-
-//You can use the same instance "v" of the Vehicle class above for the base class.
-
-//Create at least two new instances of the Car class and test them here:
